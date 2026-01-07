@@ -19,3 +19,4 @@ flutter pub add flutter_screenutil
 flutter pub add google_fonts
 flutter pub add flutter_svg
 flutter pub add flutter_bloc
+flutter pub add flutter_image_slideshow

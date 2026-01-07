@@ -8,7 +8,7 @@ import '../../../../core/commom/widget/custom_text_form_field.dart';
 import '../../../../core/constant/images_assets.dart';
 import '../../../../core/utils/app_validators.dart';
 import '../widgets/login_or_signup.dart';
-import '../widgets/size_box.dart';
+import '../../../../core/commom/widget/size_box.dart';
 import '../widgets/title_textfiel.dart';
 import 'login.dart';
 
@@ -32,7 +32,7 @@ class Register extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(createAccount, style: AppTextStyles.elMessIri25),
+                Text(createAccount, style: AppTextStyles.elMessIri30),
                 const CustomSizedBox(height: 50),
                 // Name
                 TitleTextField(title: fullName),
