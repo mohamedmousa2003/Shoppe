@@ -8,8 +8,10 @@ const String next = "NEXT";
 const String back = "Back";
 const String skip = "Skip";
 const String getStarted = "Get Started";
+
 //? Auth
 const String login = "Login";
+const String goodToSee ="Good to see you back!";
 const String createAccount = "Create Account";
 const String continueAsGuest = "Continue as Guest";
 const String getPassword = "Reset Password";
@@ -22,14 +24,14 @@ const String enterVerificationCode = "Enter the verification code";
 const String desEnterVerificationCode =
     "We have sent the verification code to the following Email";
 const String password = "Password";
-const String titleEnterNewPassword = "Enter New Password";
+const String titleEnterNewPassword = "Enter Password";
 const String desEnterNewPassword =
     "Enter a new password, it must be at least 8 characters long!";
 const String noReceiveCode = "Didn't receive the code?";
 const String orderCodeNumber = "Request a new code";
 const String confirmation = "Confirm";
 const String newPassword = "New Password";
-const String confirmNewPassword = "Confirm New Password";
+const String confirmNewPassword = "Confirm  Password";
 const String register = "Register";
 const String noHaveAccount = "Don't have an account?";
 const String welcomeLoginBack = "Welcome back!";

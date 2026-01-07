@@ -17,6 +17,27 @@ class AppTextStyles {
     color: MyColors.greyDark,
   );
 
+  static final TextStyle elMessIri25 = GoogleFonts.elMessiri(
+    fontSize: 30.sp,
+    fontWeight: FontWeight.bold,
+    color: MyColors.bluePrimary,
+  );
+
+  static final TextStyle elMessIri20 = GoogleFonts.elMessiri(
+    fontSize: 20.sp,
+    color: MyColors.greyDark,
+    fontWeight: FontWeight.bold
+  );static final TextStyle elMessIri18 = GoogleFonts.elMessiri(
+    fontSize: 18.sp,
+    color: MyColors.greyDark,
+  );
+
+  static final TextStyle elMessIri16 = GoogleFonts.elMessiri(
+      fontSize: 16.sp,
+      color: MyColors.red,
+      fontWeight: FontWeight.bold
+  );
+
   static final TextStyle nuNiToSans15 = GoogleFonts.nunitoSans(
     fontSize: 15.sp,
     color: MyColors.greyDark,
