@@ -18,3 +18,4 @@ samples, guidance on mobile development, and a full API reference.
 flutter pub add flutter_screenutil
 flutter pub add google_fonts
 flutter pub add flutter_svg
+flutter pub add flutter_bloc
