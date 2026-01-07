@@ -37,6 +37,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   google_fonts: ^7.0.0
   flutter_svg: ^2.2.3
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ flutter:
   assets:
     - assets/image_svg/
     - assets/image/
+    - assets/icon_svg/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

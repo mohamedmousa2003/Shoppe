@@ -4,6 +4,7 @@ import 'core/styles/theme.dart';
 import 'features/auth/presentation/pages/login.dart';
 import 'features/auth/presentation/pages/register.dart';
 import 'features/auth/presentation/pages/welcome_screen_view.dart';
+import 'features/navigation_bar_screen/view/navigation_bar_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: MyTheme.themeData,
-          initialRoute: WelcomeScreenView.routeName,
+          initialRoute: NavigationBarScreen.routeName,
           routes: {
+            NavigationBarScreen.routeName:(context) => NavigationBarScreen(),
             WelcomeScreenView.routeName:(context) => WelcomeScreenView(),
             Register.routeName:(context) => Register(),
             Login.routeName:(context) => Login(),
