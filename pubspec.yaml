@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^7.0.0
   flutter_svg: ^2.2.3
   flutter_bloc: ^9.1.1
+  flutter_image_slideshow: ^0.1.6
 
 dev_dependencies:
   flutter_test:

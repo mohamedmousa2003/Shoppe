@@ -1,5 +1,6 @@
 //? select Auth
 const String shoppe ="Shoppe";
+const String shop ="Shop";
 const String title ="Beautiful eCommerce UI Kit \n for your online store";
 const String getStart ="Let's get started";
 
@@ -77,7 +78,8 @@ const String clickTheHeartIcon= "Click the heart icon next to favorite items to 
 
 
 //? home Screen
-const String titleSearch ="what do you search for?";
+const String categories ="Categories";
+const String viewAll ="view all";
 const String classical ="Classical Highlights";
 const String riviera ="Riviera Highlights";
 const String cairo ="Cairo";

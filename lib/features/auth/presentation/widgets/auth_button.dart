@@ -69,7 +69,7 @@ class _AuthButtonState extends State<AuthButton> {
           Expanded(
             child: Text(
               widget.text,
-              style: AppTextStyles.elMessIri25.copyWith(
+              style: AppTextStyles.elMessIri30.copyWith(
                 color: MyColors.white,
               )
             ),

@@ -10,7 +10,7 @@ import '../../../../core/styles/styles.dart';
 import '../../../../core/utils/app_validators.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/login_or_signup.dart';
-import '../widgets/size_box.dart';
+import '../../../../core/commom/widget/size_box.dart';
 import '../widgets/title_textfiel.dart';
 
 class Login extends StatelessWidget {
@@ -33,7 +33,7 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(goodToSee, style: AppTextStyles.elMessIri25),
+            Text(goodToSee, style: AppTextStyles.elMessIri30),
             const CustomSizedBox(height: 50),
             // Email
               TitleTextField(title: email),
