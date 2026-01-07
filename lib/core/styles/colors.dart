@@ -19,4 +19,5 @@ class MyColors{
   // Red shades
   static const Color redError = Color(0xFFEC4E4E);
   static const Color red = Colors.red;
+  static const transparent  = Colors.transparent;
 }
