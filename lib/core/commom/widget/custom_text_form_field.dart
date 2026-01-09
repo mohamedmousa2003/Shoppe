@@ -1,29 +1,36 @@
-import 'package:e/core/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constant/images_assets.dart';
 import '../../styles/colors.dart';
+import '../../styles/styles.dart';
 
 class CustomTextFormApp extends StatefulWidget {
   final String hintText;
-  final bool isObscureText;
-  final bool showObscureText;
+  final TextEditingController controller;
   final String? Function(String?)? validator;
-  final TextEditingController? controller;
+
+  final bool isPassword;
+  final bool isPhone;
+  final bool isSearch;
+
+  final TextInputType keyboardType;
   final EdgeInsetsGeometry? contentPadding;
-  final TextInputType keyboardtype;
-  final Widget? prefixWidget; // ✅ أي Widget ممكن تحطه هنا
+  final Widget? prefixWidget;
 
   const CustomTextFormApp({
-    Key? key,
+    super.key,
     required this.hintText,
-    this.isObscureText = false,
-    this.showObscureText = false,
+    required this.controller,
     this.validator,
-    this.controller,
+    this.isPassword = false,
+    this.isPhone = false,
+    this.isSearch = false,
+    this.keyboardType = TextInputType.text,
     this.contentPadding,
-    this.keyboardtype = TextInputType.text,
     this.prefixWidget,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomTextFormApp> createState() => _CustomTextFormAppState();
@@ -35,52 +42,72 @@ class _CustomTextFormAppState extends State<CustomTextFormApp> {
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.isObscureText;
+    _obscureText = widget.isPassword;
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      obscureText: _obscureText,
       validator: widget.validator,
-      keyboardType: widget.keyboardtype,
+      keyboardType: widget.keyboardType,
+      obscureText: _obscureText,
       style: AppTextStyles.elMessIri20,
       decoration: InputDecoration(
-        fillColor: MyColors.greyLighter,
         filled: true,
-        contentPadding:
-        widget.contentPadding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
+        fillColor: MyColors.greyLighter,
         hintText: widget.hintText,
         hintStyle: AppTextStyles.elMessIri18,
-        errorStyle: AppTextStyles.elMessIri16,
-        errorMaxLines: 1,
+        errorStyle: AppTextStyles.elMessIri16.copyWith(color: MyColors.red),
+        contentPadding: widget.contentPadding ??
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
 
-        prefixIcon: widget.prefixWidget != null
-            ? Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          child: widget.prefixWidget,
-        )
-            : null,
+        prefixIcon: _buildPrefixIcon(),
+        suffixIcon: widget.isPassword ? _buildEyeIcon() : null,
 
-        // Eye toggle للـ password
-        suffixIcon: widget.showObscureText ? _eyeIcon() : null,
-
-        enabledBorder: _customOutLineInputBorder(color: MyColors.greyDark),
-        errorBorder: _customOutLineInputBorder(color: MyColors.red),
-        focusedBorder: _customOutLineInputBorder(color: MyColors.bluePrimary, width: 2.5),
+        enabledBorder: _outlineBorder(MyColors.greyDark),
+        focusedBorder: _outlineBorder(MyColors.bluePrimary, width: 2.5),
+        errorBorder: _outlineBorder(MyColors.red),
       ),
     );
   }
 
-  OutlineInputBorder _customOutLineInputBorder({required Color color, double width = 1.5}) {
+  /// ===================== Helpers =====================
+
+  OutlineInputBorder _outlineBorder(Color color, {double width = 1.5}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.r),
       borderSide: BorderSide(color: color, width: width.w),
     );
   }
 
-  Widget _eyeIcon() {
+  Widget? _buildPrefixIcon() {
+    if (widget.prefixWidget != null) {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        child: widget.prefixWidget,
+      );
+    }
+
+    if (widget.isPhone) {
+      return const ContainerFlagWidget();
+    }
+
+    if (widget.isSearch) {
+      return IconButton(
+        onPressed: () {},
+        icon: SvgPicture.asset(
+          'assets/icons/icon-search.svg',
+          width: 26.w,
+          height: 26.h,
+        ),
+      );
+    }
+
+    return null;
+  }
+
+  Widget _buildEyeIcon() {
     return InkWell(
       onTap: () => setState(() => _obscureText = !_obscureText),
       child: Icon(
@@ -92,30 +119,34 @@ class _CustomTextFormAppState extends State<CustomTextFormApp> {
   }
 }
 
+/// ===================== Phone Prefix =====================
+
 class ContainerFlagWidget extends StatelessWidget {
   const ContainerFlagWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
       width: 85.w,
-      height: 25,
-      padding: EdgeInsets.symmetric(horizontal: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Row(
         children: [
-          Image.asset(
-            'assets/image/Egypt.png',
-            width: 25.w,
-            height: 25.h,
-            fit: BoxFit.fill,
+          Padding(
+            padding:  EdgeInsets.only(bottom: 4.0.h),
+            child: Image.asset(
+              ImagePng.egypt,
+              width: 25.w,
+              height: 25.h,
+              fit: BoxFit.cover,
+            ),
           ),
           SizedBox(width: 5.w),
-          Text('+20', style: TextStyle(fontSize: 20.sp)),
+          Text(
+            '+2',
+            style: AppTextStyles.elMessIri20,
+          ),
         ],
       ),
     );
   }
 }
-
-

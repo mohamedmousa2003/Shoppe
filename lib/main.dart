@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/cache/shared_preferences.dart';
+import 'core/observer/observer.dart';
 import 'core/styles/theme.dart';
 import 'features/auth/presentation/pages/login.dart';
 import 'features/auth/presentation/pages/register.dart';
 import 'features/auth/presentation/pages/welcome_screen_view.dart';
 import 'features/navigation_bar_screen/view/navigation_bar_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Bloc.observer = MyBlocObserver();
+  await CacheHelper.init();
+
+  final String? token = CacheHelper.getData<String>('token');
+
+  runApp(MyApp(token: token));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String? token;
+  const MyApp({super.key, required this.token});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -22,12 +34,15 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: MyTheme.themeData,
-          initialRoute: NavigationBarScreen.routeName,
+          initialRoute:
+          token == null ? Login.routeName : NavigationBarScreen.routeName,
           routes: {
-            NavigationBarScreen.routeName:(context) => NavigationBarScreen(),
-            WelcomeScreenView.routeName:(context) => WelcomeScreenView(),
-            Register.routeName:(context) => Register(),
-            Login.routeName:(context) => Login(),
+            NavigationBarScreen.routeName: (_) =>
+            const NavigationBarScreen(),
+            WelcomeScreenView.routeName: (_) =>
+            const WelcomeScreenView(),
+            Register.routeName: (_) =>  Register(),
+            Login.routeName: (_) =>  Login(),
           },
         );
       },

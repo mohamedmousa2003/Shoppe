@@ -39,6 +39,11 @@ dependencies:
   flutter_svg: ^2.2.3
   flutter_bloc: ^9.1.1
   flutter_image_slideshow: ^0.1.6
+  equatable: ^2.0.8
+  dio: ^5.9.0
+  shared_preferences: ^2.5.4
+  dartz: ^0.10.1
+  connectivity_plus: ^7.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +72,7 @@ flutter:
     - assets/image_svg/
     - assets/image/
     - assets/icon_svg/
+    - assets/animation/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

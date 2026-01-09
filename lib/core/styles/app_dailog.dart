@@ -1,3 +1,4 @@
+import 'package:e/core/constant/images_assets.dart';
 import 'package:e/core/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,28 +7,17 @@ import 'colors.dart';
 
 
 class AppDialog {
+
   static void showLoading(
       {required BuildContext context, required String message}) {
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return AlertDialog(
-          backgroundColor: Theme.of(context).canvasColor,
-          content: Row(
-            children: [
-              CircularProgressIndicator(
-                color: Theme.of(context).primaryColor,
-              ),
-             SizedBox(width:10.w),
-              Text(
-                message,
-                style: AppTextStyles.textStyle24.copyWith(
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ],
-          ),
+        return Image.asset(
+          AnimationGif.loading,
+          height: 50.h,
+          width: 50.w,
         );
       },
     );
@@ -72,6 +62,7 @@ class AppDialog {
     );
   }
 
+
   static void showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(
       content: Text(
@@ -85,8 +76,9 @@ class AppDialog {
       backgroundColor: Colors.teal,
       behavior: SnackBarBehavior.floating,
       width: 300.w,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(seconds: 3), // SnackBar يقعد 3 ثواني
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
 }
