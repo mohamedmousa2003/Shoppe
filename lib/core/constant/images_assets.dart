@@ -10,4 +10,10 @@ abstract class ImagePng {
   static const String imageSlider1 = "$imagePAth/image_slider_1.png";
   static const String imageSlider2 = "$imagePAth/image_slider_2.png";
   static const String imageSlider3 = "$imagePAth/image_slider_3.png";
+  static const String egypt = "$imagePAth/egypt.png";
+}
+
+abstract class AnimationGif{
+  static const String accountCreate="assets/animation/accountCreated.gif";
+  static const String loading="assets/animation/loadingAnimation.gif";
 }

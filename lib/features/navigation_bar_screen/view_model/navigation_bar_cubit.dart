@@ -14,7 +14,7 @@ class NavigationBarCubit extends Cubit<NavigationBarState> {
   List<Widget> screens = [
     HomeScreen(),
     CategoryScreen(),
-    LoveScreen(),
+    ProductList(),
     ProfileScreen(),
   ];
   int currentIndex = 0;

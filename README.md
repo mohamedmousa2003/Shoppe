@@ -20,3 +20,12 @@ flutter pub add google_fonts
 flutter pub add flutter_svg
 flutter pub add flutter_bloc
 flutter pub add flutter_image_slideshow
+flutter pub add equatable
+flutter pub add dio
+flutter pub add shared_preferences
+flutter pub add dartz
+flutter pub add connectivity_plus
+
+==============================
+https://ecommerce.routemisr.com/api/v1/categories
+https://ecommerce.routemisr.com/api/v1/products
