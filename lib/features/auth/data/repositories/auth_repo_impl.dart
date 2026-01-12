@@ -4,11 +4,13 @@ import 'package:e/features/auth/domain/entities/login_entity.dart';
 import 'package:e/features/auth/domain/entities/register_entity.dart';
 import 'package:e/features/auth/domain/entities/user_entity.dart';
 import 'package:e/features/auth/domain/repositories/repo_Auth.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/exceptions/exception.dart';
 import '../data_sources/remote/auth_repo_data_source.dart';
 import '../mapper/user_model_mapper.dart';
 
+@Injectable(as: RepoAuth)
 class AuthRepoImpl extends RepoAuth {
   final AuthRepoDataSource authRepoDataSource;
 

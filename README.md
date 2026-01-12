@@ -25,7 +25,10 @@ flutter pub add dio
 flutter pub add shared_preferences
 flutter pub add dartz
 flutter pub add connectivity_plus
-
-==============================
-https://ecommerce.routemisr.com/api/v1/categories
-https://ecommerce.routemisr.com/api/v1/products
+flutter pub add cached_network_image
+flutter pub add loader_overlay
+flutter pub add injectable
+flutter pub add get_it
+flutter pub add injectable_generator
+flutter pub add dev:build_runner
+flutter pub add logger

@@ -12,6 +12,7 @@ import '../../../../core/constant/images_assets.dart';
 import '../../../../core/styles/app_dailog.dart';
 import '../../../../core/styles/styles.dart';
 import '../../../../core/utils/app_validators.dart';
+import '../../../../injectable.dart';
 import '../../../navigation_bar_screen/view/navigation_bar_screen.dart';
 import '../../data/repositories/auth_repo_impl.dart';
 import '../cubit/cubit/login_cubit.dart';
@@ -32,11 +33,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(
-        loginUseCase: LoginUsedCase(
-          repoAuth: AuthRepoImpl(AuthRepoDataSourceImpl(ApiManager())),
-        ),
-      ),
+      create: (context) => getIt<LoginCubit>(),
       child: Scaffold(
         body: Stack(
           children: [

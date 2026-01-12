@@ -4,9 +4,11 @@ import 'package:e/core/api/end_points.dart';
 import 'package:e/core/api/status_code.dart';
 import 'package:e/features/auth/data/models/user_model.dart';
 import 'package:e/features/auth/domain/entities/register_entity.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../../core/cache/shared_preferences.dart';
 import 'auth_repo_data_source.dart';
 
+@Injectable(as: AuthRepoDataSource)
 class AuthRepoDataSourceImpl extends AuthRepoDataSource {
   final ApiManager apiManager;
   AuthRepoDataSourceImpl(this.apiManager);

@@ -8,6 +8,7 @@ import 'features/auth/presentation/pages/login.dart';
 import 'features/auth/presentation/pages/register.dart';
 import 'features/auth/presentation/pages/welcome_screen_view.dart';
 import 'features/navigation_bar_screen/view/navigation_bar_screen.dart';
+import 'injectable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ void main() async {
   await CacheHelper.init();
 
   final String? token = CacheHelper.getData<String>('token');
-
+  configureDependencies();
   runApp(MyApp(token: token));
 }
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
+        return  MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: MyTheme.themeData,
           initialRoute:

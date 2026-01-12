@@ -1,11 +1,18 @@
+import 'package:e/core/api/api_manager.dart';
 import 'package:e/core/constant/text.dart';
 import 'package:e/core/styles/styles.dart';
+import 'package:e/features/home/data/data_sources/home_data_source_impl.dart';
+import 'package:e/features/home/data/repositories/home_repo_impl.dart';
+import 'package:e/features/home/domain/use_cases/categorie_use_case.dart';
+import 'package:e/features/home/presentation/bloc/cubit/home_cubit.dart';
+import 'package:e/injectable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/commom/widget/size_box.dart';
 import '../widgets/catergory_gridview.dart';
 import '../widgets/container_title.dart';
+import '../widgets/custom_sub_category.dart';
 import '../widgets/slider_image.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,37 +20,86 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.0.w ,vertical: 30.h),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(shop,style: AppTextStyles.elMessIri40,),
-              CustomSizedBox(height: 10),
-              SliderImage(),
-              CustomSizedBox(),
-              ContainerTitle(
-                onTap: (){},
-                title: categories,
-              ),
-              CustomSizedBox(),
-              SizedBox(
-                height: 350.h,
-                child: CategoryGridView(),
-              ),
-              CustomSizedBox(),
-              ContainerTitle(
-                onTap: (){},
-                title: categories,
-              ),
-              CustomSizedBox(),
-              SizedBox(
-                height: 350.h,
-                child: CategoryGridView(),
-              ),
-              Container(
+    return BlocProvider(
+      create: (context) => getIt<HomeCubit>()..getCategories(),
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 30.h),
+          child: BlocConsumer<HomeCubit, HomeState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(shop, style: AppTextStyles.elMessIri40,),
+                    CustomSizedBox(height: 10),
+                    SliderImage(),
+                    CustomSizedBox(),
+                    ContainerTitle(
+                      onTap: () {},
+                      title: categoriesText,
+                    ),
+                    CustomSizedBox(),
+                   if(state is HomeSuccess)
+                       SizedBox(
+                         height: 350.h,
+                         child: GridView.builder(
+                           scrollDirection: Axis.horizontal,
+                           itemBuilder: (context, index) {
+                             return CategoryGridView(
+                               data: state.products.data![index],
+                               onClick: () {
+                                 final category = state.products.data![index];
+
+                                 Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                     builder: (_) => CustomSubCategory(
+                                       categoryId: category.id!,
+                                       categoryModel: category,
+                                     ),
+                                   ),
+                                 );
+                               },
+
+                             );
+                           },
+                           itemCount: state.products.data?.length ??0,
+                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                             crossAxisCount: 2,
+                           ),
+                         ),
+                       ),
+                    CustomSizedBox(),
+                    CustomSizedBox(),
+
+
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+Container(
                 width: 191,
                 height: 237,
                 clipBehavior: Clip.hardEdge,
@@ -231,10 +287,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+
+ */

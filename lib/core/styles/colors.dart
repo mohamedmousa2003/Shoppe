@@ -11,6 +11,7 @@ class MyColors{
   static const Color greyLighter = Color(0xFFF3F3F3);
   static const Color greyDark = Color(0xFF202020);
   static const Color greyDefault = Colors.grey;
+  static Color containerGray = const Color(0xffDBE4ED);
 
   // Black & White
   static const Color black = Color(0xFF000000);

@@ -1,10 +1,33 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
+import 'package:flutter/foundation.dart';
 
+import '../network/logger_interceptor.dart';
+
+
+@singleton
 class ApiManager {
   late final Dio dio;
 
+  final Logger _logger = Logger(
+    level: kReleaseMode ? Level.nothing : Level.debug,
+    printer: PrettyPrinter(
+      methodCount: 1,
+      printEmojis: true,
+      colors: true,
+    ),
+  );
+
   ApiManager() {
-    dio = Dio();
+    dio = Dio(
+      BaseOptions(
+        connectTimeout: const Duration(seconds: 15),
+        receiveTimeout: const Duration(seconds: 15),
+      ),
+    );
+
+    dio.interceptors.add(LoggerInterceptor(_logger));
   }
 
   Future<Response> getData({
