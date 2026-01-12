@@ -78,6 +78,7 @@ class ProductList extends StatelessWidget {
                         ),
                       ),
                     ),
+                    //? image
                     Positioned(
                       left: 390,
                       top: 104,

@@ -80,18 +80,11 @@ const String clickTheHeartIcon= "Click the heart icon next to favorite items to 
 
 
 //? home Screen
-const String categories ="Categories";
+const String categoriesText ="Categories";
 const String viewAll ="view all";
-const String classical ="Classical Highlights";
-const String riviera ="Riviera Highlights";
-const String cairo ="Cairo";
-const String day ="Days";
-const String hotel ="Hotel";
+const String noCategoriesFound="No Categories found";
 
-//? chatBot
-const String logo ="A M U N";
-const String chatBot = "ChatBot";
-const String whatCanIHelp = "What can I help with ?";
+
 
 //? trip
 const String tripPlanner ="Egypt Trip Planner";

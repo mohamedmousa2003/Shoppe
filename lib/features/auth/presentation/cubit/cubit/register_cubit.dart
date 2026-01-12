@@ -1,8 +1,10 @@
 import 'package:e/features/auth/presentation/cubit/state/register_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import '../../../domain/entities/register_entity.dart';
 import '../../../domain/use_cases/register_use_case.dart';
 
+@injectable
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCase registerUseCase;
 
