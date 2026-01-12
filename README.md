@@ -15,15 +15,23 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-flutter pub add flutter_screenutil
-flutter pub add google_fonts
-flutter pub add flutter_svg
-flutter pub add flutter_bloc
-flutter pub add flutter_image_slideshow
-flutter pub add equatable
-flutter pub add dio
-flutter pub add shared_preferences
-flutter pub add dartz
+
+## 📦 Packages Used
+- [`flutter_svg`](https://pub.dev/packages/flutter_svg/install)
+- [`flutter_dio`](https://pub.dev/packages/flutter_screenutil)
+- [`flutter_dio`](https://pub.dev/packages/google_fonts)
+- [`flutter_dio`](https://pub.dev/packages/flutter_svg)
+- [`flutter_dio`](https://pub.dev/packages/dio)
+- [`flutter_dio`](https://pub.dev/packages/flutter_bloc)
+- [`flutter_dio`](https://pub.dev/packages/flutter_image_slideshow)
+- [`flutter_dio`](https://pub.dev/packages/equatable)
+- [`flutter_dio`](https://pub.dev/packages/shared_preferences)
+- [`flutter_dio`](https://pub.dev/packages/connectivity_plus)
+
+
+
+
+
 flutter pub add connectivity_plus
 
 ==============================
