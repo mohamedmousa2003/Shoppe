@@ -1,56 +1,54 @@
-import 'package:e/core/constant/images_assets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e/features/home/data/models/ModelCategories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/commom/widget/size_box.dart';
 import '../../../../core/styles/styles.dart';
 
 
 class CategoryGridView extends StatelessWidget {
-  const CategoryGridView({super.key});
+  Data data;
+  final VoidCallback onClick;
+  CategoryGridView({super.key,required this.data,required this.onClick});
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-
-      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 0.w,
-        crossAxisSpacing: 2.h,
-      ),
-      itemBuilder: (context, index) => Container(
-        height: 150.h,
-        width: 80.w,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ClipRRect(
-               child:  Image.asset(
-              ImagePng.imageSlider1,
+    return  InkWell(
+      onTap: onClick,
+      child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CachedNetworkImage(
+                height: 85.h,
+                width: 100.w,
                 fit: BoxFit.cover,
-                height: 90.h,
-                width: 90.w,
+                imageUrl: data.image ?? "",
+                placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
               ),
-              borderRadius: BorderRadius.circular(100.r),
-            ),
-            CustomSizedBox(height: 5),
-            Text(
-              "Women's fashion",
-              style: AppTextStyles.elMessIri20,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-      itemCount: 20,
+              CustomSizedBox(height: 5),
+              Text(
+                data.name ??"",
+                style: AppTextStyles.elMessIri20,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
     );
   }
 }

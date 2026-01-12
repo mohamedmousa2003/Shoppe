@@ -12,6 +12,7 @@ import '../../../../core/commom/widget/custom_text_form_field.dart';
 import '../../../../core/constant/images_assets.dart';
 import '../../../../core/styles/app_dailog.dart';
 import '../../../../core/utils/app_validators.dart';
+import '../../../../injectable.dart';
 import '../../../navigation_bar_screen/view/navigation_bar_screen.dart';
 import '../../data/data_sources/remote/auth_repo_data_source_impl.dart';
 import '../../data/repositories/auth_repo_impl.dart';
@@ -37,11 +38,8 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(
-        RegisterUseCase(
-          repoAuth: AuthRepoImpl(AuthRepoDataSourceImpl(ApiManager())),
-        ),
-      ),
+      create: (context) => getIt<RegisterCubit>(),
+
       child: Scaffold(
         body: Stack(
           children: [

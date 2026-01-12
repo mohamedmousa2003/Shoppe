@@ -12,6 +12,11 @@ class AppTextStyles {
   );
 
 
+  static final TextStyle raleWay20 = GoogleFonts.raleway(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.bold,
+    color: MyColors.bluePrimary,
+  );
 
   // ElMessIri
   static final TextStyle elMessIri40= GoogleFonts.elMessiri(

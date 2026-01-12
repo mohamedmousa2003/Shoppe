@@ -7,5 +7,6 @@ class MyTheme{
   static ThemeData themeData =ThemeData(
     scaffoldBackgroundColor: MyColors.white,
     textTheme: AppTextStyles.textTheme,
+
   );
 }
