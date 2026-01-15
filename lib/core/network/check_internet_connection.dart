@@ -1,29 +1,19 @@
-// import 'dart:async';
-// import 'package:connectivity_plus/connectivity_plus.dart';
-//
-// class CheckInternetConnection {
-//   final Connectivity _connectivity = Connectivity();
-//
-//   // للتحقق الفوري من حالة الإنترنت الحالية
-//   Future<bool> isConnected() async {
-//     final result = await _connectivity.checkConnectivity();
-//     return _isOnline(result);
-//   }
-//
-//   // Stream لمراقبة تغييرات الاتصال بالإنترنت
-//   Stream<bool> get onConnectivityChanged {
-//     return _connectivity.onConnectivityChanged.map(_isOnline);
-//   }
-//
-//   // تحويل ConnectivityResult إلى bool
-//   bool _isOnline(ConnectivityResult result) {
-//     switch (result) {
-//       case ConnectivityResult.mobile:
-//       case ConnectivityResult.wifi:
-//         return true;
-//       case ConnectivityResult.none:
-//       default:
-//         return false;
-//     }
-//   }
-// }
+import 'package:connectivity_plus/connectivity_plus.dart';
+
+/// A utility class to check internet connectivity.
+class NetworkUtils {
+  NetworkUtils._(); // Private constructor to prevent instantiation
+
+  static Future<bool> isConnected() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+
+    // Mobile or Wifi means there is internet
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    }
+
+    // No internet
+    return false;
+  }
+}

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e/core/exceptions/failures.dart';
 import 'package:e/features/category/data/data_sources/remote/category_data_source.dart';
 import 'package:e/features/category/data/models/CategoryModel.dart';
-import 'package:e/injectable.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/repositories/category_repo.dart';
 

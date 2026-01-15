@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/cache/shared_preferences.dart';
+import 'core/network/check_internet_connection.dart';
 import 'core/observer/observer.dart';
 import 'core/styles/theme.dart';
 import 'features/auth/presentation/pages/login.dart';
 import 'features/auth/presentation/pages/register.dart';
 import 'features/auth/presentation/pages/welcome_screen_view.dart';
 import 'features/navigation_bar_screen/view/navigation_bar_screen.dart';
-import 'injectable.dart';
+import 'Di/injectable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() async {
   await CacheHelper.init();
 
   final String? token = CacheHelper.getData<String>('token');
+  await NetworkUtils.isConnected();
   configureDependencies();
   runApp(MyApp(token: token));
 }
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return  MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: MyTheme.themeData,
           initialRoute:

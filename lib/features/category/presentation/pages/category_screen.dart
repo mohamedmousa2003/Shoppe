@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e/features/category/data/models/CategoryModel.dart';
 import 'package:e/features/category/presentation/cubit/category_cubit.dart';
-import 'package:e/injectable.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -7,6 +7,8 @@ import '../entities/user_entity.dart';
 abstract class RepoAuth {
 
   Future<Either< AppFailures,UserEntity>> login(LoginEntity entity);
-  Future<Either< AppFailures,UserEntity>> register(RegisterEntity entity);
+  Future<Either< AppFailures,UserEntity>> register(
+      String name ,String email , String password , String rePassword , String phone
+      );
 
 }

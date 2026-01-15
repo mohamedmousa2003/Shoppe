@@ -1,7 +1,7 @@
 import 'package:e/features/category/presentation/cubit/category_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../injectable.dart';
+import '../../../../Di/injectable.dart';
 import '../../domain/use_cases/category_use_case.dart';
 
 @injectable

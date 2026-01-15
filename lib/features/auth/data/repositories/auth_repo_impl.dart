@@ -7,6 +7,7 @@ import 'package:e/features/auth/domain/repositories/repo_Auth.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/exceptions/exception.dart';
+import '../../../../core/network/check_internet_connection.dart';
 import '../data_sources/remote/auth_repo_data_source.dart';
 import '../mapper/user_model_mapper.dart';
 
@@ -18,29 +19,31 @@ class AuthRepoImpl extends RepoAuth {
 
   @override
   Future<Either<AppFailures, UserEntity>> login(LoginEntity entity) async {
-    try {
-      final userModel =
-      await authRepoDataSource.login(entity.email, entity.password);
-      return Right(userModel.toEntity());
-    } on AppException catch (e) {
-      return Left(RemoteFailures(e.message));
-    } catch (_) {
-      return const Left(RemoteFailures("Unexpected error"));
-    }
+
+      bool checkInternet = await NetworkUtils.isConnected();
+
+
+        final userModel =
+        await authRepoDataSource.login(entity.email, entity.password);
+        return Right(userModel.toEntity());
+
+
+
   }
 
 
 
   @override
   Future<Either<AppFailures, UserEntity>> register(
-      RegisterEntity entity) async {
+      String name ,String email , String password , String rePassword , String phone
+      ) async {
     try {
-      final userModel = await authRepoDataSource.register(entity);
+      final userModel = await authRepoDataSource.register(name, email, password, rePassword, phone);
       return Right(userModel.toEntity());
     } on AppException catch (e) {
       return Left(RemoteFailures(e.message));
     } on Exception catch (e) {
-      return Left(RemoteFailures(e.toString())); // هيرجع الرسالة هنا
+      return Left(RemoteFailures(e.toString()));
     }
   }
 }

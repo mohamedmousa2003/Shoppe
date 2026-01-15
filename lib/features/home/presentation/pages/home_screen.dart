@@ -5,7 +5,7 @@ import 'package:e/features/home/data/data_sources/home_data_source_impl.dart';
 import 'package:e/features/home/data/repositories/home_repo_impl.dart';
 import 'package:e/features/home/domain/use_cases/categorie_use_case.dart';
 import 'package:e/features/home/presentation/bloc/cubit/home_cubit.dart';
-import 'package:e/injectable.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

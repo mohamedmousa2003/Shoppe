@@ -1,7 +1,7 @@
 import 'package:e/core/api/api_manager.dart';
 import 'package:e/core/api/end_points.dart';
 import 'package:e/features/category/data/models/CategoryModel.dart';
-import 'package:e/injectable.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/api/status_code.dart';
 import 'category_data_source.dart';

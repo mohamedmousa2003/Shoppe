@@ -8,19 +8,29 @@ import 'colors.dart';
 
 class AppDialog {
 
-  static void showLoading(
-      {required BuildContext context, required String message}) {
+  static void showLoading({
+    required BuildContext context,
+    required String message,
+  }) {
     showDialog(
-      barrierDismissible: false,
       context: context,
+      barrierDismissible: false,
       builder: (context) {
-        return Image.asset(
-          AnimationGif.loading,
-          height: 50.h,
-          width: 50.w,
+        return Center(
+          child: Image.asset(
+            AnimationGif.loading,
+            height: 50.h,
+            width: 50.w,
+          ),
         );
       },
     );
+  }
+
+  static void hideLoading(BuildContext context) {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
   }
 
   static void showMessage(
@@ -76,7 +86,7 @@ class AppDialog {
       backgroundColor: Colors.teal,
       behavior: SnackBarBehavior.floating,
       width: 300.w,
-      duration: const Duration(seconds: 3), // SnackBar يقعد 3 ثواني
+      duration: const Duration(seconds: 3),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

@@ -8,6 +8,18 @@ The app provides a smooth and structured user experience starting from authentic
 
 ## 🚀 App Flow
 
+## 🤖 AI Virtual Try-On Feature
+
+The application includes an **AI-powered virtual try-on feature** that allows users to preview clothing items on themselves before making a decision.
+
+### How It Works:
+- The user selects or uploads a **personal image**.
+- The user chooses a **clothing item** (e.g., T-shirt).
+- The AI processes both images and generates a **realistic preview** showing how the selected clothing looks on the user.
+- The result is displayed directly inside the app.
+
+
+
 ### 🔹 Splash Screen
 - Displays a splash screen on app launch.
 - Checks if the user is already authenticated.

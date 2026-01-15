@@ -1,7 +1,4 @@
-import 'package:e/core/api/api_manager.dart';
 import 'package:e/core/constant/text.dart';
-import 'package:e/features/auth/data/data_sources/remote/auth_repo_data_source_impl.dart';
-import 'package:e/features/auth/domain/use_cases/login_used_case.dart';
 import 'package:e/features/auth/presentation/pages/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +9,8 @@ import '../../../../core/constant/images_assets.dart';
 import '../../../../core/styles/app_dailog.dart';
 import '../../../../core/styles/styles.dart';
 import '../../../../core/utils/app_validators.dart';
-import '../../../../injectable.dart';
+import '../../../../Di/injectable.dart';
 import '../../../navigation_bar_screen/view/navigation_bar_screen.dart';
-import '../../data/repositories/auth_repo_impl.dart';
 import '../cubit/cubit/login_cubit.dart';
 import '../cubit/state/login_state.dart';
 import '../widgets/auth_button.dart';
@@ -26,8 +22,8 @@ class Login extends StatelessWidget {
   static const String routeName = "login";
   Login({super.key});
 
-  final emailController = TextEditingController(text: "mousa11111@gmail.com");
-  final passwordController = TextEditingController(text: "Ahmed@123");
+  final emailController = TextEditingController(text: "Mousa2003123456789@gmail.com",);
+  final passwordController = TextEditingController(text: "mousa123456789");
   final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -53,6 +49,7 @@ class Login extends StatelessWidget {
                   );
                 }
                 if (state is LoginSuccess) {
+                  AppDialog.hideLoading(context);
                   Navigator.pushReplacementNamed(
                     context,
                     NavigationBarScreen.routeName,
