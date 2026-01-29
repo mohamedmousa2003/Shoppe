@@ -8,5 +8,11 @@ class MyTheme{
     scaffoldBackgroundColor: MyColors.white,
     textTheme: AppTextStyles.textTheme,
 
+  appBarTheme: AppBarTheme(
+    backgroundColor: MyColors.white,
+    elevation:0,
+    scrolledUnderElevation: 0,
+  )
+
   );
 }

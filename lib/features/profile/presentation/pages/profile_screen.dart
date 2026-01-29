@@ -10,25 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: InkWell(
-          onTap: () async {
-            // 1️⃣ Remove token
-            await CacheHelper.removeData(
-                'token'
-            );
-
-            // 2️⃣ Navigate to Login
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              Login.routeName,
-                  (route) => false, // remove all previous routes
-            );
-          },
-          child: const Text(
-            "Log Out",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
+          child:Text("Mohamed Mousa",style: TextStyle(color: Colors.red,fontSize: 30),)
       ),
     );
   }

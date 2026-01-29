@@ -26,9 +26,7 @@ class AuthRepoDataSourceImpl extends AuthRepoDataSource {
           response.statusCode! >= StatusCodes.success &&
           response.statusCode! < 300) {
         return UserModel.fromJson(response.data);
-      } else if (response.statusCode == StatusCodes.serverError) {
-        throw Exception("Email or password is incorrect");
-      } else {
+      }  else {
         throw Exception(response.data['message'] ?? 'Unknown error');
       }
     } on DioException catch (e) {
@@ -61,13 +59,18 @@ class AuthRepoDataSourceImpl extends AuthRepoDataSource {
         },
       );
 
+      try {
       if (response.statusCode != null &&
           response.statusCode! >= StatusCodes.success &&
           response.statusCode! < 300) {
         return UserModel.fromJson(response.data);
       } else {
-         return response.data['message'];
-      }
+        throw Exception(response.data['message'] ?? 'Unknown error');
+      } }on DioException catch (e) {
+    throw Exception(
+    e.response?.data['message'] ?? 'Network error',
+    );
+    }
 
   }
 

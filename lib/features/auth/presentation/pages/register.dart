@@ -43,7 +43,6 @@ class Register extends StatelessWidget {
               if (state is RegisterLoading) {
                 AppDialog.showLoading(
                   context: context,
-                  message: "Loading...",
                 );
               }
 

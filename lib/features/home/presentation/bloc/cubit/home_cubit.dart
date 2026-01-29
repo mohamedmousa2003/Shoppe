@@ -1,26 +1,44 @@
 import 'package:bloc/bloc.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:e/features/home/data/models/ModelCategories.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import '../../../domain/use_cases/brands_use_case.dart';
 import '../../../domain/use_cases/categorie_use_case.dart';
 part '../state/home_state.dart';
 
 @injectable
 class HomeCubit extends Cubit<HomeState> {
-  CategoriesUseCase categoriesUseCase;
-  HomeCubit(this.categoriesUseCase) : super(HomeInitial());
+  HomeCubit() : super(HomeInitial());
 
+  ModelCategories? _categories;
+  ModelCategories? _brands;
 
-  Future<void> getCategories() async {
+  Future<void> loadHomeData() async {
     emit(HomeLoading());
-    final result = await categoriesUseCase.call();
-    result.fold(
-          (failure) {
-        emit(HomeError(failure.message));
-      }, (data) {
-            emit(HomeSuccess(data));
 
+    final categoriesResult = await getIt<CategoriesUseCase>().call();
+    final brandsResult = await getIt<BrandsUseCase>().call();
+
+    categoriesResult.fold(
+          (failure) => emit(HomeError(failure.message)),
+          (categories) {
+        _categories = categories;
       },
     );
+
+    brandsResult.fold(
+          (failure) => emit(HomeError(failure.message)),
+          (brands) {
+        _brands = brands;
+      },
+    );
+
+    if (_categories != null && _brands != null) {
+      emit(HomeLoaded(
+        categories: _categories!,
+        brands: _brands!,
+      ));
+    }
   }
 }

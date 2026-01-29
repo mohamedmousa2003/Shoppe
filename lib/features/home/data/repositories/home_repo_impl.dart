@@ -31,4 +31,14 @@ class HomeRepoImpl implements HomeRepo{
     }
   }
 
+  @override
+  Future<Either<AppFailures, ModelCategories>> getBrands() async{
+    try{
+      final getBrands =await homeDataSource.getBrands();
+      return right(getBrands);
+    } catch(e){
+      return Left(RemoteFailures(e.toString()));
+    }
+  }
+
 }

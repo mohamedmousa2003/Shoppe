@@ -115,6 +115,7 @@ The application includes an **AI-powered virtual try-on feature** that allows us
 - [`flutter_svg`](https://pub.dev/packages/flutter_svg)
 - [`flutter_image_slideshow`](https://pub.dev/packages/flutter_image_slideshow)
 - [`cached_network_image`](https://pub.dev/packages/cached_network_image)
+- [`readmore`](https://pub.dev/packages/readmore)
 
 ### 🧠 State Management
 - [`flutter_bloc`](https://pub.dev/packages/flutter_bloc)

@@ -1,67 +1,75 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:e/core/styles/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e/features/category/presentation/cubit/category_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../data/models/CategoryModel.dart';
+import 'category_item.dart';
 
-class CategoryItem extends StatelessWidget {
-  final CategoryData category;
+class CategoriesList extends StatefulWidget {
+  CategoryModel? categoryModel;
 
-  const CategoryItem({required this.category});
+  CategoriesList({required this.categoryModel, super.key});
+
+  @override
+  State<CategoriesList> createState() => _CategoriesListState();
+}
+
+class _CategoriesListState extends State<CategoriesList> {
+  // Index of the currently selected category
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
-      padding: EdgeInsets.all(12.w),
-      decoration: BoxDecoration(
-        color: MyColors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: MyColors.black,
-            blurRadius: 6,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          /// 🖼 Image
-          CachedNetworkImage(
-            height: 70.h,
-            width: 70.w,
-            imageUrl: category.images?.first ?? "",
-            placeholder: (context, url) =>
-            const CircularProgressIndicator(),
-            errorWidget: (context, url, error) =>
-            const Icon(Icons.error),
-            imageBuilder: (context, imageProvider) {
-              return CircleAvatar(
-                radius: 35.r,
-                backgroundImage: imageProvider,
-              );
-            },
-          ),
-
-          SizedBox(width: 16.w),
-
-          /// 📝 Text
-          Expanded(
-            child: Text(
-              category.category?.name ?? "",
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-              ),
+    return Expanded(
+        child: Container(
+          decoration: BoxDecoration(
+            color: MyColors.containerGray,
+            border: Border(
+              // set the border for only 3 sides
+                top: BorderSide(
+                    width: 2.w,
+                    color: MyColors.bluePrimary.withOpacity(0.3)),
+                left: BorderSide(
+                    width: 2.w,
+                    color: MyColors.bluePrimary.withOpacity(0.3)),
+                bottom: BorderSide(
+                    width: 2.w,
+                    color: MyColors.bluePrimary.withOpacity(0.3))),
+            borderRadius:  BorderRadius.only(
+              topLeft: Radius.circular(12.r),
+              bottomLeft: Radius.circular(12.r),
             ),
           ),
 
-          const Icon(Icons.arrow_forward_ios),
-        ],
-      ),
-    );
+          // the categories items list
+          child: ClipRRect(
+            // clip the corners of the container that hold the list view
+            borderRadius:  BorderRadius.only(
+              topLeft: Radius.circular(12.r),
+              bottomLeft: Radius.circular(12.r),
+            ),
+            child: ListView.builder(
+              itemCount: widget.categoryModel?.data?.length ?? 0,
+              itemBuilder: (context, index) => CategoryItem(
+                  index,
+                  widget.categoryModel?.data?[index].category?.name ?? "",
+                  selectedIndex == index,
+                  onItemClick
+              ),
+            ),
+          ),
+        ));
+  }
+
+  // callback function to change the selected index
+  void onItemClick(int index) {
+    setState(() {
+      selectedIndex = index;
+      // BlocProvider.of<CategoryCubit>(context).getProduct(
+      //     GetSubCategoriesEvent(widget.categoryModel?.data?[index].sId ?? ""));
+    });
   }
 }

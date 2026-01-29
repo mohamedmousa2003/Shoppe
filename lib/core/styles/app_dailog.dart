@@ -10,7 +10,6 @@ class AppDialog {
 
   static void showLoading({
     required BuildContext context,
-    required String message,
   }) {
     showDialog(
       context: context,
@@ -19,8 +18,8 @@ class AppDialog {
         return Center(
           child: Image.asset(
             AnimationGif.loading,
-            height: 50.h,
-            width: 50.w,
+            height: 80.h,
+            width: 80.w,
           ),
         );
       },

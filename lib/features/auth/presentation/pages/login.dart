@@ -22,127 +22,131 @@ class Login extends StatelessWidget {
   static const String routeName = "login";
   Login({super.key});
 
-  final emailController = TextEditingController(text: "Mousa2003123456789@gmail.com",);
-  final passwordController = TextEditingController(text: "mousa123456789");
   final GlobalKey<FormState> formKey = GlobalKey();
 
+  LoginCubit viewModel = getIt<LoginCubit>();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<LoginCubit>(),
-      child: Scaffold(
-        body: Stack(
-          children: [
-            // Background Image
-            Image.asset(
-              ImagePng.backgroundRegister,
-              width: double.infinity,
-              fit: BoxFit.fill,
-            ),
-            // Login Form
-            BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state is LoginLoading) {
-                  AppDialog.showLoading(
-                    context: context,
-                    message: "Loading!!!!",
-                  );
-                }
-                if (state is LoginSuccess) {
-                  AppDialog.hideLoading(context);
-                  Navigator.pushReplacementNamed(
-                    context,
-                    NavigationBarScreen.routeName,
-                  );
-                  AppDialog.showSnackBar(context, "success Login ");
-                } else if (state is LoginError) {
-                  AppDialog.showMessage(context: context, message: state.error);
-                }
-              },
-              builder: (context, state) {
-                return SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 30.h,
-                          horizontal: 10.w,
-                        ),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const CustomSizedBox(height: 50),
-                              Text(goodToSee, style: AppTextStyles.elMessIri30),
-                              const CustomSizedBox(height: 50),
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Background Image
+          Image.asset(
+            ImagePng.backgroundRegister,
+            width: double.infinity,
+            fit: BoxFit.fill,
+          ),
+          // Login Form
+          BlocListener<LoginCubit, LoginState>(
+            bloc: viewModel,
 
-                              // Email
-                              TitleTextField(title: email),
-                              CustomTextFormApp(
-                                hintText: enterYourEmail,
-                                prefixWidget: const Icon(CupertinoIcons.mail),
-                                keyboardType: TextInputType.emailAddress,
-                                isPassword: false,
-                                validator: (email) =>
-                                    AppValidators.email(email),
-                                controller: emailController,
-                              ),
-                              const CustomSizedBox(),
 
-                              // Password
-                              TitleTextField(title: password),
-                              CustomTextFormApp(
-                                hintText: titleEnterNewPassword,
-                                prefixWidget: const Icon(CupertinoIcons.lock),
-                                keyboardType: TextInputType.visiblePassword,
-                                isPassword: true,
-                                validator: (password) =>
-                                    AppValidators.password(password),
-                                controller: passwordController,
-                              ),
-                              const CustomSizedBox(),
 
-                              // Login Button
-                              AuthButton(
-                                text: login,
-                                emailController: emailController,
-                                passwordController: passwordController,
-                                onPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    context.read<LoginCubit>().login(
-                                      emailController.text,
-                                      passwordController.text,
-                                    );
-                                  }
-                                },
-                              ),
-                              const CustomSizedBox(height: 50),
+            listener: (context, state) {
 
-                              // Register Link
-                              LoginOrSignUp(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    Register.routeName,
-                                  );
-                                },
-                                startTitle: noHaveAccount,
-                                endTitle: register,
-                              ),
-                            ],
+              if (state is LoginLoading) {
+                AppDialog.showLoading(context: context);
+              }
+
+              else if (state is LoginError) {
+                AppDialog.hideLoading(context);
+                AppDialog.showMessage(
+                  context: context,
+                  message: state.error,
+                );
+              }
+              else if (state is LoginSuccess) {
+                AppDialog.hideLoading(context);
+                AppDialog.showSnackBar(context, "success Login");
+                Navigator.pushReplacementNamed(
+                  context,
+                  NavigationBarScreen.routeName,
+                );
+              }
+            },
+
+
+
+
+
+
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 30.h,
+                      horizontal: 10.w,
+                    ),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const CustomSizedBox(height: 50),
+                          Text(goodToSee, style: AppTextStyles.elMessIri30),
+                          const CustomSizedBox(height: 50),
+
+                          // Email
+                          TitleTextField(title: email),
+                          CustomTextFormApp(
+                            hintText: enterYourEmail,
+                            prefixWidget: const Icon(CupertinoIcons.mail),
+                            keyboardType: TextInputType.emailAddress,
+                            isPassword: false,
+                            validator: (email) => AppValidators.email(email),
+                            controller: viewModel.emailController,
                           ),
-                        ),
+                          const CustomSizedBox(),
+
+                          // Password
+                          TitleTextField(title: password),
+                          CustomTextFormApp(
+                            hintText: titleEnterNewPassword,
+                            prefixWidget: const Icon(CupertinoIcons.lock),
+                            keyboardType: TextInputType.visiblePassword,
+                            isPassword: true,
+                            validator: (password) =>
+                                AppValidators.password(password),
+                            controller: viewModel.passwordController,
+                          ),
+                          const CustomSizedBox(),
+
+                          // Login Button
+                          AuthButton(
+                            text: login,
+                            emailController: viewModel.emailController,
+                            passwordController: viewModel.passwordController,
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                viewModel.login();
+                              }
+                            },
+                          ),
+                          const CustomSizedBox(height: 50),
+
+                          // Register Link
+                          LoginOrSignUp(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                Register.routeName,
+                              );
+                            },
+                            startTitle: noHaveAccount,
+                            endTitle: register,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                );
-              },
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

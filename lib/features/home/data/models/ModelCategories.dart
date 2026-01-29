@@ -18,17 +18,7 @@ class ModelCategories {
   Metadata? metadata;
   List<Data>? data;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['results'] = results;
-    if (metadata != null) {
-      map['metadata'] = metadata?.toJson();
-    }
-    if (data != null) {
-      map['data'] = data?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
+
 
 }
 
@@ -84,12 +74,6 @@ class Metadata {
   int? numberOfPages;
   int? limit;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['currentPage'] = currentPage;
-    map['numberOfPages'] = numberOfPages;
-    map['limit'] = limit;
-    return map;
-  }
+
 
 }

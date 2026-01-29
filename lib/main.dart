@@ -8,6 +8,10 @@ import 'core/styles/theme.dart';
 import 'features/auth/presentation/pages/login.dart';
 import 'features/auth/presentation/pages/register.dart';
 import 'features/auth/presentation/pages/welcome_screen_view.dart';
+import 'features/cart/presentation/pages/cart_view.dart';
+import 'features/category/presentation/pages/category_screen.dart';
+import 'features/category/presentation/pages/product_details.dart';
+import 'features/home/presentation/pages/screen_view_all.dart';
 import 'features/navigation_bar_screen/view/navigation_bar_screen.dart';
 import 'Di/injectable.dart';
 
@@ -16,7 +20,7 @@ void main() async {
 
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
-
+  Bloc.observer = MyBlocObserver();
   final String? token = CacheHelper.getData<String>('token');
   await NetworkUtils.isConnected();
   configureDependencies();
@@ -40,12 +44,15 @@ class MyApp extends StatelessWidget {
           initialRoute:
           token == null ? Login.routeName : NavigationBarScreen.routeName,
           routes: {
-            NavigationBarScreen.routeName: (_) =>
-            const NavigationBarScreen(),
+            NavigationBarScreen.routeName: (_) => NavigationBarScreen(),
             WelcomeScreenView.routeName: (_) =>
             const WelcomeScreenView(),
             Register.routeName: (_) =>  Register(),
+            ScreenViewAll.routeName: (_) =>  ScreenViewAll(),
             Login.routeName: (_) =>  Login(),
+            CategoryScreen.routeName: (_) =>  CategoryScreen(),
+            ProductDetails.routeName: (_) =>  ProductDetails(),
+            CartView.routeName: (_) =>  CartView(),
           },
         );
       },

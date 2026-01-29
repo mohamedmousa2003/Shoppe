@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:e/core/exceptions/failures.dart';
 import 'package:e/features/auth/domain/entities/login_entity.dart';
-import 'package:e/features/auth/domain/entities/register_entity.dart';
 import 'package:e/features/auth/domain/entities/user_entity.dart';
 import 'package:e/features/auth/domain/repositories/repo_Auth.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../core/exceptions/exception.dart';
 import '../../../../core/network/check_internet_connection.dart';
 import '../data_sources/remote/auth_repo_data_source.dart';
@@ -22,11 +20,15 @@ class AuthRepoImpl extends RepoAuth {
 
       bool checkInternet = await NetworkUtils.isConnected();
 
-
+      try{
         final userModel =
         await authRepoDataSource.login(entity.email, entity.password);
         return Right(userModel.toEntity());
-
+      } on AppException catch (e) {
+        return Left(RemoteFailures(e.message));
+      } on Exception catch (e) {
+        return Left(RemoteFailures(e.toString()));
+      }
 
 
   }

@@ -81,6 +81,7 @@ const String clickTheHeartIcon= "Click the heart icon next to favorite items to 
 
 //? home Screen
 const String categoriesText ="Categories";
+const String brandsText ="Brands";
 const String viewAll ="view all";
 const String noCategoriesFound="No Categories found";
 
@@ -110,3 +111,10 @@ const String noPlace ="The place does not exist, try writing another name.";
 //? handled error
 const String noInternetConnection ="No internet connection";
 const String checkYourConnection = "Check your connection and try again.";
+
+//?
+const String productDetails="Product details";
+const String description="Description";
+const String totalPrice="Total Price";
+const String cart= "Cart";
+const String checkOut= "Check Out";

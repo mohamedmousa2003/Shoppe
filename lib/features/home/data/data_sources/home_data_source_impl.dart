@@ -9,6 +9,8 @@ import '../../../../core/api/status_code.dart';
 class HomeDataSourceImpl extends HomeDataSource{
   ApiManager apiManager;
   HomeDataSourceImpl(this.apiManager);
+
+  //? categories
   @override
   Future<ModelCategories> getCategories() async{
 
@@ -45,6 +47,20 @@ class HomeDataSourceImpl extends HomeDataSource{
      rethrow;
    }
 
+  }
+
+
+  //? Brands
+  @override
+  Future<ModelCategories> getBrands() async{
+    final response =await apiManager.getData(endPoint: EndPoints.getAllBrands);
+    if (response.statusCode == StatusCodes.success) {
+      return ModelCategories.fromJson(response.data);
+    }
+    else {
+      throw Exception(
+          "Unexpected error: ${response.statusCode} - ${response.data}");
+    }
   }
 
 }

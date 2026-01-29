@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class MyColors{
   static const Color bluePrimary = Color(0xFF004CFF);
   static const Color blueAccent = Color(0xFF004BFE);
+  static const Color blue = Color(0xFF06004F);
 
   // Grey shades
   static const Color greyLightest = Color(0xFFF8F8F8);
@@ -20,5 +21,6 @@ class MyColors{
   // Red shades
   static const Color redError = Color(0xFFEC4E4E);
   static const Color red = Colors.red;
+  static const Color green = Colors.green;
   static const transparent  = Colors.transparent;
 }
