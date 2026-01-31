@@ -38,7 +38,7 @@ class ApiManager {
     return dio.get(
       endPoint,
       queryParameters: param,
-      options: Options(headers: headers),
+      options: Options(headers: headers,validateStatus: (status) => true),
     );
   }
 
@@ -50,7 +50,42 @@ class ApiManager {
     return dio.post(
       endPoint,
       data: body,
-      options: Options(headers: headers),
+      options: Options(headers: headers ,validateStatus: (status) => true,),
+    );
+  }
+
+
+  ////// Delete ///////
+  Future<Response> deleteData({
+    required String endPoint,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    return dio.delete(
+      endPoint,
+      data: body,
+      options: Options(
+        headers: headers,
+        validateStatus: (status) => true,
+      ),
+    );
+  }
+
+
+  //////////////////////// Put
+  Future<Response> upDateData({
+    required String endPoint,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    return dio.put(
+      endPoint,
+      data: body,
+      options: Options(
+        headers: headers,
+        validateStatus: (status) => true,
+      ),
     );
   }
 }
+// validateStatus: (status) => true

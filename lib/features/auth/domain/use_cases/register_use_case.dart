@@ -9,7 +9,8 @@ import '../../../../core/exceptions/failures.dart';
 class RegisterUseCase {
   final RepoAuth repoAuth ;
   RegisterUseCase({required this.repoAuth});
-  Future<Either< AppFailures,UserEntity>> call(RegisterEntity entity){
-    return repoAuth.register(entity);
+  Future<Either< AppFailures,UserEntity>> call(String name ,String email , String password , String rePassword , String phone
+      ){
+    return repoAuth.register(name, email, password, rePassword, phone);
   }
 }

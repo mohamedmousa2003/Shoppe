@@ -13,11 +13,17 @@ final class HomeInitial extends HomeState {
 final class HomeLoading extends HomeState {}
 
 
-class HomeSuccess extends HomeState {
-  final ModelCategories products;
-  HomeSuccess(this.products);
+class HomeLoaded extends HomeState {
+  final ModelCategories categories;
+  final ModelCategories brands;
+
+  HomeLoaded({
+    required this.categories,
+    required this.brands,
+  });
+
   @override
-  List<Object?> get props => [products];
+  List<Object?> get props => [categories, brands];
 }
 
 

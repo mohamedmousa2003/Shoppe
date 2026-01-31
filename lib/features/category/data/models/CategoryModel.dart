@@ -15,7 +15,7 @@ class CategoryModel {
       });
     }
   }
-  int? results;
+  num? results;
   Metadata? metadata;
   List<CategoryData>? data;
 
@@ -77,16 +77,16 @@ class CategoryData {
     updatedAt = json['updatedAt'];
     id = json['id'];
   }
-  int? sold;
+  num? sold;
   List<String>? images;
   List<Subcategory>? subcategory;
-  int? ratingsQuantity;
+  num? ratingsQuantity;
   String? id;
   String? title;
   String? slug;
   String? description;
-  int? quantity;
-  int? price;
+  num? quantity;
+  num? price;
   String? imageCover;
   Category? category;
   Brand? brand;
@@ -225,10 +225,10 @@ class Metadata {
     limit = json['limit'];
     nextPage = json['nextPage'];
   }
-  int? currentPage;
-  int? numberOfPages;
-  int? limit;
-  int? nextPage;
+  num? currentPage;
+  num? numberOfPages;
+  num? limit;
+  num? nextPage;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

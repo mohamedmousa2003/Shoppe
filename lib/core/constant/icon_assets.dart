@@ -13,5 +13,10 @@ abstract class IconsSvg {
   static const String profileUnSelected = 'assets/icon_svg/icon-profile-unselected.svg';
 
 
+  //
+  static const String icCart = 'assets/icon_svg/🦆 icon _shopping cart_.svg';
+  static const String icSearch = 'assets/icon_svg/icon _search_.svg';
+
+
 
 }

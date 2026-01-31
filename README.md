@@ -8,6 +8,18 @@ The app provides a smooth and structured user experience starting from authentic
 
 ## 🚀 App Flow
 
+## 🤖 AI Virtual Try-On Feature
+
+The application includes an **AI-powered virtual try-on feature** that allows users to preview clothing items on themselves before making a decision.
+
+### How It Works:
+- The user selects or uploads a **personal image**.
+- The user chooses a **clothing item** (e.g., T-shirt).
+- The AI processes both images and generates a **realistic preview** showing how the selected clothing looks on the user.
+- The result is displayed directly inside the app.
+
+
+
 ### 🔹 Splash Screen
 - Displays a splash screen on app launch.
 - Checks if the user is already authenticated.
@@ -103,6 +115,7 @@ The app provides a smooth and structured user experience starting from authentic
 - [`flutter_svg`](https://pub.dev/packages/flutter_svg)
 - [`flutter_image_slideshow`](https://pub.dev/packages/flutter_image_slideshow)
 - [`cached_network_image`](https://pub.dev/packages/cached_network_image)
+- [`readmore`](https://pub.dev/packages/readmore)
 
 ### 🧠 State Management
 - [`flutter_bloc`](https://pub.dev/packages/flutter_bloc)

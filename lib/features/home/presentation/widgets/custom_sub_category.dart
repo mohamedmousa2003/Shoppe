@@ -2,7 +2,7 @@ import 'package:e/core/styles/colors.dart';
 import 'package:e/core/styles/styles.dart';
 import 'package:e/features/home/data/models/ModelCategories.dart';
 import 'package:e/features/home/presentation/bloc/state/get_sub_categories_state.dart';
-import 'package:e/injectable.dart';
+import 'package:e/Di/injectable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

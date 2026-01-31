@@ -22,50 +22,56 @@ class AuthRepoDataSourceImpl extends AuthRepoDataSource {
       );
 
       await CacheHelper.setData<String>('token', response.data['token']);
-      if (response.statusCode == StatusCodes.success) {
+      if (response.statusCode != null &&
+          response.statusCode! >= StatusCodes.success &&
+          response.statusCode! < 300) {
         return UserModel.fromJson(response.data);
-      } else if (response.statusCode == StatusCodes.serverError) {
-        throw Exception("Email or password is incorrect");
-      } else {
-        throw Exception(
-            "Unexpected error: ${response.statusCode} - ${response.data}");
+      }  else {
+        throw Exception(response.data['message'] ?? 'Unknown error');
       }
     } on DioException catch (e) {
-      throw Exception("Network error: ${e.message}");
+      throw Exception(
+        e.response?.data['message'] ?? 'Network error',
+      );
     }
   }
+
 
 
 
   @override
-  Future<UserModel> register(RegisterEntity entity) async {
-    try {
+  Future<UserModel> register(
+      String name,
+      String email,
+      String password,
+      String rePassword,
+      String phone,
+      ) async {
+
       final response = await apiManager.postData(
         endPoint: EndPoints.signUp,
         body: {
-          "name": entity.fullName,
-          "email": entity.email,
-          "password": entity.password,
-          "rePassword": entity.rePassword,
-          "phone":entity.phone,
+          "name": name,
+          "email": email,
+          "password": password,
+          "rePassword": rePassword,
+          "phone": phone,
         },
       );
 
-      if (response.statusCode == StatusCodes.success) {
+      try {
+      if (response.statusCode != null &&
+          response.statusCode! >= StatusCodes.success &&
+          response.statusCode! < 300) {
         return UserModel.fromJson(response.data);
-      } else if (response.statusCode == StatusCodes.serverError) {
-        throw Exception("Email or phone already exists!");
-
-      } else if (response.statusCode == 409) {
-        throw Exception("Email or phone already exists!");
       } else {
-        throw Exception("Unexpected error: ${response.statusCode}");
-      }
-    } on DioException catch (e) {
-      if (e.response?.statusCode == StatusCodes.serverError) {
-        throw Exception("Email or phone already exists!");
-      }
-      throw Exception("Network error: ${e.message}");
+        throw Exception(response.data['message'] ?? 'Unknown error');
+      } }on DioException catch (e) {
+    throw Exception(
+    e.response?.data['message'] ?? 'Network error',
+    );
     }
+
   }
+
 }

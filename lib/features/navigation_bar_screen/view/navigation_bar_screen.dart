@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../core/commom/widget/home_app_bar.dart';
 import '../../../core/constant/icon_assets.dart';
 import '../../../core/styles/colors.dart';
 import '../view_model/navigation_bar_cubit.dart';
@@ -24,8 +25,7 @@ class _NavigationBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<NavigationBarCubit>();
-
+    NavigationBarCubit viewModel = context.read<NavigationBarCubit>();
     final List<_NavItem> navItems = [
       _NavItem( IconsSvg.homeSelected ,IconsSvg.homeUnSelected),
       _NavItem(IconsSvg.categorySelected ,IconsSvg.categoryUnSelected),
@@ -36,6 +36,7 @@ class _NavigationBarView extends StatelessWidget {
     return BlocBuilder<NavigationBarCubit, NavigationBarState>(
       builder: (context, state) {
         return Scaffold(
+          appBar: const HomeScreenAppBar(),
           body: viewModel.screens[viewModel.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: viewModel.currentIndex,
